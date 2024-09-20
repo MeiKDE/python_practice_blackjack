@@ -1,7 +1,6 @@
 from art import logo
 import os #os means operating system
 import random
-print(logo)
 
 def calculate_user_score(user_random_cards):
     """Calculates the score of the user's hand"""
@@ -42,15 +41,18 @@ def hit_or_stand(user_score, computer_score, cards, user_random_cards, computer_
             user_random_card=random.choice(cards)
             user_random_cards.append(user_random_card)
             user_score=sum(user_random_cards)
-            print(f"Your cards: {user_random_cards}")
+            print(f"Your hand: {user_random_cards}")
             print(f"Your score: {user_score}")
             
             #print("Computer's turn")
             computer_random_card=random.choice(cards)
             computer_random_cards.append(computer_random_card)
             computer_score=sum(computer_random_cards)
-            print(f"Computer's first card: {computer_random_cards[0]}")
-            #print(f"Computer's score: {computer_score}")
+            #print(f"Computer's first card: {computer_random_cards[0]}")
+            #print(f"checking computer card values prior to comparison: {computer_random_cards}")
+        
+        print(f"Computer's hand: {computer_random_cards}")
+        print(f"Computer's final score: {computer_score}")
         can_continue = compare_scores(user_score, computer_score)
         if can_continue:
             continue
@@ -62,32 +64,32 @@ def compare_scores(user_score, computer_score):
     if user_score>21 and computer_score>21:
         #print(f"user score is:{user_score}")
         #print(f"computer score is:{computer_score}")
-        print("Both players bust! It's a tie!")
+        print("Both players bust! It's a tie! 🙃")
         return False
     elif user_score>21:
         #print(f"user score is:{user_score}")
         #print(f"computer score is:{computer_score}")
-        print("You bust! You lose!")
+        print("You bust! You lose! 😭")
         return False
     elif computer_score>21:
         #print(f"user score is:{user_score}")    
         #print(f"computer score is:{computer_score}")
-        print("Computer bust! You win!")
+        print("Computer bust! You win!😃")
         return False
     elif user_score==computer_score:
         #print(f"user score is:{user_score}")
         #print(f"computer score is:{computer_score}")
-        print("It's a draw!")
+        print("It's a tie! 🙃")
         return False
     elif user_score>computer_score:
         #print(f"user score is:{user_score}")
         #print(f"computer score is:{computer_score}")
-        print("You win!")
+        print("You win!😃")
         return False
     elif user_score<computer_score:
         #print(f"user score is:{user_score}")
         #print(f"computer score is:{computer_score}")
-        print("Computer wins!")
+        print("Computer wins!😱")
         return False
     else:
         print("Comparing scores...")
@@ -103,6 +105,7 @@ def restart_game():
         print("Thanks for playing, bye bye!")
 
 def play_game():
+    print(logo)
     """starts the game"""
     #1 Get 2 cards and calculate total score
     cards=[1,2,3,4,5,6,7,8,9,10,11,12,13]
@@ -118,7 +121,7 @@ def play_game():
     print(f"Your score: {user_score}")
 
     computer_score=calculate_user_score(computer_random_cards)     
-    print(f"Computer's score: {computer_score}")
+    #print(f"Computer's score: {computer_score}")
     
     if user_score==21 and computer_score!=21:
         print(f"You win!")
@@ -126,4 +129,6 @@ def play_game():
         hit_or_stand(user_score, computer_score, cards, user_random_cards, computer_random_cards)
         restart_game()
 
-play_game()
+while input("Do you want to play a game of Blackjack? 'y/n' ")=='y':
+    print("\n" * 20) 
+    play_game()
