@@ -4,6 +4,7 @@ import random
 print(logo)
 
 def calculate_user_score(user_random_cards):
+    """Calculates the score of the user's hand"""
     #Convert 10, 11, 12, 13 to 10 for the user
     for i, card in enumerate(user_random_cards): # means for each card in the list user_random_cards, i is the index and card is the value
         if card in [10, 11, 12, 13]:
@@ -18,6 +19,7 @@ def calculate_user_score(user_random_cards):
     return user_score
 
 def calculate_computer_score(computer_random_cards):
+    """Calculates the score of the computer's hand"""
     #Convert 10, 11, 12, 13 to 10 for the user
     for i, card in enumerate(computer_random_cards): # means for each card in the list user_random_cards, i is the index and card is the value
         if card in [10, 11, 12, 13]:
@@ -33,6 +35,7 @@ def calculate_computer_score(computer_random_cards):
 
 #3 Ask if want to hit or stand 'y/n'
 def hit_or_stand(user_score, computer_score, cards, user_random_cards, computer_random_cards):
+    """asks the user if they want to hit or stand"""
     while user_score<21:
         user_choice=input("Do you want to hit (y) or stand (n)? 'y/n' ")
         if user_choice=='y':
@@ -55,6 +58,7 @@ def hit_or_stand(user_score, computer_score, cards, user_random_cards, computer_
             return [user_score, computer_score, user_random_cards, computer_random_cards]
     
 def compare_scores(user_score, computer_score):
+    """compares the scores of the user and computer"""
     if user_score>21 and computer_score>21:
         #print(f"user score is:{user_score}")
         #print(f"computer score is:{computer_score}")
@@ -90,6 +94,7 @@ def compare_scores(user_score, computer_score):
         return True
         
 def restart_game():
+    """restarts the game"""
     restart=input("Do you want to play again? 'y/n' ")
     if restart=='y':
         print("restarting game...")
@@ -98,6 +103,7 @@ def restart_game():
         print("Thanks for playing, bye bye!")
 
 def play_game():
+    """starts the game"""
     #1 Get 2 cards and calculate total score
     cards=[1,2,3,4,5,6,7,8,9,10,11,12,13]
     user_random_cards=random.sample(cards,2)
